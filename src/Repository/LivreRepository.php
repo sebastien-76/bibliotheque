@@ -21,6 +21,18 @@ class LivreRepository extends ServiceEntityRepository
         parent::__construct($registry, Livre::class);
     }
 
+    public function findByGenre(Genre $genre): array
+    {
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.livre', 'livre')
+            ->innerJoin('livre.genre', 'genre')
+            ->andWhere ('genre.nom like %roman%')
+            ->orderBy('livre.titre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Livre[] Returns an array of Livre objects
 //     */

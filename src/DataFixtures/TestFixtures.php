@@ -26,13 +26,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
         {
             $this->faker = FakerFactory::create('fr_FR');
             $this->hasher = $hasher;
-
         }
     
-        public static function getGroups(): array
-        {
-            return ['test'];
-        }
+    public static function getGroups(): array
+    {
+        return ['test'];
+    }
 
     public function load(ObjectManager $manager): void
     {
@@ -154,7 +153,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $auteur->setNom($this->faker->LastName());
             $auteur->setPrenom($this->faker->FirstName());
 
-        $this->manager->persist($auteur);
+            $this->manager->persist($auteur);
         }
 
         $this->manager->flush();
@@ -164,10 +163,10 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
     public function loadEmprunteurs(): void
     {
         //données statiques
-        $data = [
+        $datas = [
             [
                 'email' => 'foo.foo@example.com',
-                'role' => ['ROLE_USER'],
+                'roles' => ['ROLE_USER'],
                 'password' => '123',
                 'enabled' => true,
                 'nom' => 'foo',
@@ -176,7 +175,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
             [
                 'email' => 'bar.bar@example.com',
-                'role' => ['ROLE_USER'],
+                'roles' => ['ROLE_USER'],
                 'password' => '123',
                 'enabled' => false,
                 'nom' => 'bar',
@@ -185,7 +184,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
             [
                 'email' => 'baz.baz@example.com',
-                'role' => ['ROLE_USER'],
+                'roles' => ['ROLE_USER'],
                 'password' => '123',
                 'enabled' => true,
                 'nom' => 'baz',
@@ -194,11 +193,11 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             ],
         ];
         
-        foreach ($data as $data) {
+        foreach ($datas as $data) {
             $user = new User();
             $user->setEmail($data['email']);
-            $user->setRoles($data['role']);
-            $password = $this ->hasher->hashPassword($user, $data['password']);
+            $user->setRoles($data['roles']);
+            $password = $this->hasher->hashPassword($user, $data['password']);
             $user->setPassword($password);
             $user->setEnabled($data['enabled']);
 
@@ -210,7 +209,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunteur->setTel($data['tel']);
             $emprunteur->setUser($user);
             
-        $this->manager->persist($emprunteur);
+            $this->manager->persist($emprunteur);
         }
         
         $this->manager->flush();
@@ -223,7 +222,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $user->setRoles(['ROLE_USER']);
             $password = $this ->hasher->hashPassword($user, '123');
             $user->setPassword($password);
-            $user->setEnabled($this->faker->boolean(70));
+            $number = random_int(1, 10);
+            $enabled = $number <= 7 ? true : false;
+            $user->setEnabled($enabled);
 
             $this->manager->persist($user);
          
@@ -232,7 +233,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunteur->setPrenom($this->faker->firstName());
             $emprunteur->setTel($this->faker->phoneNumber());
             $emprunteur->setUser($user);
-
 
             $this->manager->persist($emprunteur);
         }
@@ -302,7 +302,6 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $livre->setNombrePages($data['nombrePages']);
             $livre->setCodeIsbn($data['codeIsbn']);
             $livre->setAuteur($data['auteur']);
-        //            $livre->addGenre($data['genres'][0]);
 
             foreach ($data['genres'] as $genre) {
                 $livre->addGenre($genre);
@@ -329,7 +328,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
                 $livre->addGenre($genre);
             }
 
-        $this->manager->persist($livre);
+            $this->manager->persist($livre);
         }
 
         $this->manager->flush();
@@ -380,7 +379,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunt->setEmprunteur($data['emprunteurId']);
 
             $this->manager->persist($emprunt);
-            }
+        }
 
         $this->manager->flush();
         
@@ -394,10 +393,9 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunteur = $this->faker->randomElement($emprunteurs);
             $emprunt->setEmprunteur($emprunteur);
 
-        $this->manager->persist($emprunt);
+            $this->manager->persist($emprunt);
         }
 
         $this->manager->flush();
-
     }
 }

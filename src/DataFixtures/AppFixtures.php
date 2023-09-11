@@ -55,11 +55,9 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
             $user->setRoles($data['roles']);
             $user->setEnabled($data['enabled']);
 
+            //Permet de pousser les données en base de données
+            //indique que la variable user doit être stockée en bdd
             $this->manager->persist($user);
-
-        //Permet de pousser les données en base de données
-        //indique que la variable user doit être stockée en bdd
-        $this->manager->persist($user);
         }
         //génére et execute le code sql qui va stocker les données en bdd
         $this->manager->flush();

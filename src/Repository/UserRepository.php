@@ -40,6 +40,47 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->getEntityManager()->flush();
     }
 
+    public function listeUser(): array
+    {
+        return $this->createQueryBuilder('u')
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOneByEmail($value): ?User
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.email = :email')
+            ->setParameter('email', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function findByRole($role): array 
+        {
+            return $this->createQueryBuilder('u')
+                ->andWhere('u.roles LIKE :role')
+                ->setParameter('role', "%$role%")
+                ->orderBy('u.email', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+    public function findByEnabled($value): array
+    {
+        return $this->createQueryBuilder('u')
+            ->andWhere('u.enabled = :val')
+            ->setParameter('val', $value)
+            ->orderBy('u.email', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */
