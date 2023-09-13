@@ -21,6 +21,65 @@ class EmprunteurRepository extends ServiceEntityRepository
         parent::__construct($registry, Emprunteur::class);
     }
 
+    public function listeEmprunteur(): array
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.nom', 'ASC')
+            ->addOrderBy('e.prenom', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findOneByUserId($value): ?Emprunteur
+    {
+        return $this->createQueryBuilder('e')
+            ->where('e.user = :val')
+            ->setParameter('val', $value)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
+    public function findByKeyword($value): array
+        {
+            return $this->createQueryBuilder('e')
+                ->where('e.nom like :val')
+                ->orWhere('e.prenom like :val')
+                ->setParameter('val', "%$value%")
+                ->orderBy('e.nom', 'ASC')
+                ->addOrderBy('e.prenom', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+        public function findByTel($value): array
+        {
+            return $this->createQueryBuilder('e')
+                ->where('e.tel like :val')
+                ->setParameter('val', "%$value%")
+                ->orderBy('e.nom', 'ASC')
+                ->addOrderBy('e.prenom', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+        public function findByCreatedAt($value): array
+        {
+            return $this->createQueryBuilder('e')
+                ->where('e.createdAt < :val')
+                ->setParameter('val', $value)
+                ->orderBy('e.nom', 'ASC')
+                ->addOrderBy('e.prenom', 'ASC')
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
+
+
 //    /**
 //     * @return Emprunteur[] Returns an array of Emprunteur objects
 //     */

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+
+
+<h2>Liste des livres triée par ordre alphabétique de titres</h2>
+
+{% for livre in livres %}
+    <p>(Id: {{ livre.id }}) Titre : {{ livre.titre }} Année d'édition : {{ livre.anneeEdition }} Nombres de pages : {{ livre.nombrePages }} Code ISBN : {{ livre.codeIsbn }} Auteur id: {{ livre.auteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des données du livre 1</h2>
+    <p>(Id: {{ livre1.id }}) Titre : {{ livre1.titre }} Année d'édition : {{ livre1.anneeEdition }} Nombres de pages : {{ livre1.nombrePages }} Code ISBN : {{ livre1.codeIsbn }} Auteur id: {{ livre1.auteur.id }}<p>
+
+<h2>Liste des livres contenant lorem dans le titre</h2>
+
+{% for livre in livresLorem %}
+    <p>(Id: {{ livre.id }}) Titre : {{ livre.titre }} Année d'édition : {{ livre.anneeEdition }} Nombres de pages : {{ livre.nombrePages }} Code ISBN : {{ livre.codeIsbn }} Auteur id: {{ livre.auteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des livres dont l'auteur a l'id 2 triée par ordre alphabétique de titre</h2>
+
+{% for livre in livresAuteurId %}
+    <p>(Id: {{ livre.id }}) Titre : {{ livre.titre }} Année d'édition : {{ livre.anneeEdition }} Nombres de pages : {{ livre.nombrePages }} Code ISBN : {{ livre.codeIsbn }} Auteur id: {{ livre.auteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des livres dont le genre contient "roman" par ordre alphabétique de titre</h2>
+
+{% for livre in livresGenre %}
+    <p>(Id: {{ livre.id }}) Titre : {{ livre.titre }} Année d'édition : {{ livre.anneeEdition }} Nombres de pages : {{ livre.nombrePages }} Code ISBN : {{ livre.codeIsbn }} Auteur id: {{ livre.auteur.id }}<p>
+{% endfor %}
+
+
+
+{% endblock %}

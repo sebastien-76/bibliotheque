@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+
+
+<h2>Liste des dix derniers emprunts triée par ordre chronologique décroissant</h2>
+
+{% for emprunt in empruntByDateEmprunt %}
+    <p>(Id: {{ emprunt.id }}) Date d'emprunt : {{ emprunt.dateEmprunt| date ('Y/m/d') }} Date de retour : {{ emprunt.dateRetour| date ('Y/m/d') }} Livre Id : {{ emprunt.livre.id }} Emprunteur Id: {{ emprunt.emprunteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des emprunts de l'emprunteur id 2 triée par ordre chronologique décroissant</h2>
+
+{% for emprunt in empruntIdEmpunteur2 %}
+    <p>(Id: {{ emprunt.id }}) Date d'emprunt : {{ emprunt.dateEmprunt| date ('Y/m/d') }} Date de retour : {{ emprunt.dateRetour| date ('Y/m/d') }} Livre Id : {{ emprunt.livre.id }}<p>
+{% endfor %}
+
+<h2>Liste des emprunts du livre id 3 triée par ordre chronologique décroissant</h2>
+
+{% for emprunt in empruntIdLivre3 %}
+    <p>(Id: {{ emprunt.id }}) Date d'emprunt : {{ emprunt.dateEmprunt| date ('Y/m/d') }} Date de retour : {{ emprunt.dateRetour| date ('Y/m/d') }} Emprunteur Id: {{ emprunt.emprunteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des dix derniers retours triée par ordre chronologique décroissant</h2>
+
+{% for emprunt in empruntByDateRetour %}
+    <p>(Id: {{ emprunt.id }}) Date d'emprunt : {{ emprunt.dateEmprunt| date ('Y/m/d') }} Date de retour : {{ emprunt.dateRetour| date ('Y/m/d') }} Livre Id : {{ emprunt.livre.id }} Emprunteur Id: {{ emprunt.emprunteur.id }}<p>
+{% endfor %}
+
+<h2>Liste des emprunts non retournés triée par ordre chronologique croissant</h2>
+
+{% for emprunt in empruntByNonRetour %}
+    <p>(Id: {{ emprunt.id }}) Date d'emprunt : {{ emprunt.dateEmprunt| date ('Y/m/d') }} Livre Id : {{ emprunt.livre.id }} Emprunteur Id: {{ emprunt.emprunteur.id }}<p>
+{% endfor %}
+
+{% endblock %}

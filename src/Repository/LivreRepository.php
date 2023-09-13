@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Livre;
+use App\Entity\Auteur;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -21,13 +22,44 @@ class LivreRepository extends ServiceEntityRepository
         parent::__construct($registry, Livre::class);
     }
 
-    public function findByGenre(Genre $genre): array
+    public function listeLivre(): array
     {
         return $this->createQueryBuilder('l')
-            ->innerJoin('l.livre', 'livre')
-            ->innerJoin('livre.genre', 'genre')
-            ->andWhere ('genre.nom like %roman%')
-            ->orderBy('livre.titre', 'ASC')
+            ->orderBy('l.titre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findBykeyword($value): array
+    {
+        return $this->createQueryBuilder('l')
+            ->Where('l.titre LIKE :val')
+            ->setParameter('val', "%$value%")
+            ->orderby('l.titre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByAuteurId(?int $value)
+    {
+        return $this->createQueryBuilder('l')
+            ->Where('l.auteur = :val')
+            ->setParameter('val', $value)
+            ->orderby('l.titre', 'ASC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
+    public function findByGenre(?string $value): array 
+    {
+        return $this->createQueryBuilder('l')
+            ->innerJoin('l.genres', 'genre')
+            ->Where ('genre.nom like :val')
+            ->setParameter('val', "%$value%")
+            ->orderBy('l.titre', 'ASC')
             ->getQuery()
             ->getResult()
         ;

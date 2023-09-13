@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+
+
+<h2>Liste des utilisateurs triée par ordre alphabétique d'email</h2>
+
+{% for user in users %}
+    <p>(Id: {{ user.id }}) Email : {{ user.email }} Role : {{ user.roles[0] }} Activité : {{ user.enabled ? actif : inactif  }} Créé le : {{ user.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+<h2>Liste des données de l'utilisateur dont l'id est 1</h2>
+    <p>id: {{ user1.id }} email : {{ user1.email }} role : {{ user1.roles[0] }} Activité : {{ user1.enabled ? actif : inactif  }} Créé le : {{ user1.createdAt| date ('Y/m/d') }}<p>
+
+<h2>Liste des données de l'utilisateur dont l'email est foo.foo@example.com</h2>
+    <p>id: {{ userFoo.id}} email : {{ userFoo.email }} role : {{ userFoo.roles[0] }} Activité : {{ userFoo.enabled ? actif : inactif  }} Créé le : {{ userFoo.createdAt| date ('Y/m/d') }}<p>
+
+
+<h2>Liste des utilisateurs ROLE_USER triée par ordre alphabétique d'email</h2>
+
+{% for user in userByRole %}
+    <p>id : {{ user.id }} email : {{ user.email }} role : {{ user.roles[0] }} Activité : {{ user.enabled ? actif : inactif  }} Créé le : {{ user.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+<h2>Liste des données de l'utilisateur inactifs triée par ordre alphabétique d'email</h2>
+{% for user in userDisabled %}
+    <p>(id: {{ user.id }}) email : {{ user.email }} role : {{ user.roles[0] }} Créé le : {{ user.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+
+{% endblock %}

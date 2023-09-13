@@ -222,9 +222,7 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $user->setRoles(['ROLE_USER']);
             $password = $this ->hasher->hashPassword($user, '123');
             $user->setPassword($password);
-            $number = random_int(1, 10);
-            $enabled = $number <= 7 ? true : false;
-            $user->setEnabled($enabled);
+            $user->setEnabled($this->faker->boolean(0.7));
 
             $this->manager->persist($user);
          
@@ -233,11 +231,12 @@ class TestFixtures extends Fixture implements FixtureGroupInterface
             $emprunteur->setPrenom($this->faker->firstName());
             $emprunteur->setTel($this->faker->phoneNumber());
             $emprunteur->setUser($user);
+            $emprunteur->setCreatedAt($this->faker->dateTimebetween('-3years','-6months'));
 
             $this->manager->persist($emprunteur);
         }
 
-    $this->manager->flush();
+        $this->manager->flush();
 
     }
 

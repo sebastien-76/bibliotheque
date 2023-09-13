@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{title}}{% endblock %}
+
+{% block body %}
+<h1>{{title}}</h1>
+
+
+<h2>Liste des emprunteurs triée par ordre alphabétique de nom et prénom</h2>
+
+{% for emprunteur in emprunteurs %}
+    <p>(Id: {{ emprunteur.id }}) Nom : {{ emprunteur.nom }} Prénom : {{ emprunteur.prenom }} Telephone : {{ emprunteur.tel }} Créé le : {{ emprunteur.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+<h2>Liste des infos de l'emprunteur dont l'id est 3</h2>
+    <p>(Id: {{ emprunteur3.id }}) Nom : {{ emprunteur3.nom }} Prénom : {{ emprunteur3.prenom }} Telephone : {{ emprunteur3.tel }} Créé le : {{ emprunteur3.createdAt| date ('Y/m/d') }}<p>
+
+<h2>Liste des infos de l'emprunteur dont le user a l'id 3</h2>
+    <p>(Id: {{ emprunteurByUserId.id }}) Nom : {{ emprunteurByUserId.nom }} Prénom : {{ emprunteurByUserId.prenom }} Telephone : {{ emprunteurByUserId.tel }} Créé le : {{ emprunteurByUserId.createdAt| date ('Y/m/d') }}<p>
+
+<h2>Liste des infos de l'emprunteur dont le nom ou leprenom contient "foo"</h2>
+{% for emprunteur in emprunteurByKeyword %}
+    <p>(Id: {{ emprunteur.id }}) Nom : {{ emprunteur.nom }} Prénom : {{ emprunteur.prenom }} Telephone : {{ emprunteur.tel }} Créé le : {{ emprunteur.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+<h2>Liste des infos de l'emprunteur dont le téléphone contient '1234'</h2>
+{% for emprunteur in emprunteurByTel %}
+    <p>(Id: {{ emprunteur.id }}) Nom : {{ emprunteur.nom }} Prénom : {{ emprunteur.prenom }} Telephone : {{ emprunteur.tel }} Créé le : {{ emprunteur.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+<h2>Liste des emprunteurs créés avant le 01/03/2021</h2>
+{% for emprunteur in emprunteurByCreatedAt %}
+    <p>(Id: {{ emprunteur.id }}) Nom : {{ emprunteur.nom }} Prénom : {{ emprunteur.prenom }} Telephone : {{ emprunteur.tel }} Créé le : {{ emprunteur.createdAt| date ('Y/m/d') }}<p>
+{% endfor %}
+
+{% endblock %}
