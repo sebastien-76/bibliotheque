@@ -58,7 +58,19 @@ Lancer le serveur web de développement :
 symfony serve
 ```
 
-Puis ouvrir la page suivante : [https://localhost:8080](https://localhost:8080)
+Puis ouvrir la page suivante : [https://localhost:8000](https://localhost:8000)
+
+Pour vérifier les requêtes en lecture pour les users, ouvrir la page :
+[https://localhost:8000/test/user](https://localhost:8000/test/user)
+
+Pour vérifier les requêtes en lecture pour les livres, ouvrir la page :
+[https://localhost:8000/test/livre](https://localhost:8000/test/livre)
+
+Pour vérifier les requêtes en lecture pour les emprunteurs, ouvrir la page :
+[https://localhost:8000/test/emprunteur](https://localhost:8000/test/emprunteur)
+
+Pour vérifier les requêtes en lecture pour les emprunts, ouvrir la page :
+[https://localhost:8000/test/emprunt](https://localhost:8000/test/emprunt)
 
 ## Mentions légales
 
