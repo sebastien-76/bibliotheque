@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>Accueil Bibliothèque</h2>
+        <h4>Livre - Auteur - Annee d'édition - Nombre de pages</h4>
+        {% if livres %}
+            <ul>
+                {% for livre in livres %}
+                    <li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <a href="{{ path('app_admin_livre_show', {id: livre.id}) }}">
+                        {% else %}
+                            <a href="{{ path('app_livre_show', {id: livre.id}) }}">
+                        {% endif %}
+                        {{livre.titre}} </a> -{{ livre.auteur.prenom }} {{ livre.auteur.nom }} - {{livre.anneeEdition}} - {{livre.nombrePages}} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+
+{% endblock %}

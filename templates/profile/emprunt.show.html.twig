@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Emprunt : {{ emprunt.emprunteur.nom }}{{ emprunt.emprunteur.prenom }}{% endblock %}
+
+{% block body %}
+    <h1>Livre : {{ emprunt.livre.titre }}Livre</h1>
+    <h3>Date d'emprunt : {{ emprunt.dateEmprunt|date('Y-m-d H:i:s')}}</h3>
+    <h3>Date de retour : {{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s'): '' }}</h3>
+{% endblock %}  

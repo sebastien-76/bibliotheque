@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre : {{ livre.titre }}{% endblock %}
+
+{% block body %}
+    <h1>Titre : {{ livre.titre }}Livre</h1>
+    <h3>Année d'édition : {{ livre.anneeEdition }}</h3>
+    <h3>Nombre de pages : {{ livre.nombrePages }}</h3>
+    <h3>Code isbn : {{ livre.codeIsbn }}</h3>
+    <h3>Auteur : <a href="{{ path ('app_auteur_show', {id: livre.auteur.id })}}">{{ livre.auteur.prenom }} {{ livre.auteur.nom }}</a></h3>
+     <h3>Genre(s) :
+        {% for genre in livre.genres %}
+            <a href="{{ path ('app_genre_show', {id: genre.id })}}">{{ genre.nom }}{% if not loop.last %},{% endif %}
+        {% endfor %}
+            </a>
+    </h3>
+{% endblock %}

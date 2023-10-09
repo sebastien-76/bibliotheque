@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block body %}
+    <div>
+        <h2>Liste des emprunts</h2>
+        <h4>Id - Titre du Livre - Date d'emprunt - Date de retour</h4>
+        {% if emprunts %}
+            <ul>
+                {% for emprunt in emprunts %}
+                    <li>
+                        <a href= "{{ path('app_profile_emprunt_show', {id: emprunt.id}) }}">{{ emprunt.id }}</a> - <a href="{{ path('app_livre_show', {id: emprunt.livre.id}) }}">
+                        {{emprunt.livre.titre}}</a> {{ emprunt.dateEmprunt|date('Y-m-d H:i:s')}} {{ emprunt.dateRetour ? emprunt.dateRetour|date('Y-m-d H:i:s'): '' }}
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}
