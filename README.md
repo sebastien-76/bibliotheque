@@ -72,6 +72,14 @@ Pour vérifier les requêtes en lecture pour les emprunteurs, ouvrir la page :
 Pour vérifier les requêtes en lecture pour les emprunts, ouvrir la page :
 [https://localhost:8000/test/emprunt](https://localhost:8000/test/emprunt)
 
+Accès au catalogue des livres, ouvrir la page :
+[https://localhost:8000](https://localhost:8000)
+
+Pour s'identifier ( en tant qu'emprunteur ou administrateur), ouvrir la page :
+[https://localhost:8000/login](https://localhost:8000/login).
+
+Les différentes pages sont, ensuite, accessibles à partir de la barre de navigation en haut de la page en fonction des droits du compte.
+
 ## Mentions légales
 
 Ce projet est sous licence MIT.
