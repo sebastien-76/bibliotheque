@@ -1,8 +1,12 @@
-README.md
-#Bibliothèque
+# Bibliothèque
 
 Ce repo contient une application de gestion de bibliothèque.
-Il s'agit d'un ecf pour la promo 11.
+Il s'agit d'un ecf back-end pour la promo 11 Pop School 09/2023
+Les consignes sont disponibles ici :
+[https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_1.md](https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_1.md)
+[https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_2.md](https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_2.md)
+[https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_3.md](https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_3.md)
+
 
 ## Prérequis
 
@@ -37,18 +41,21 @@ DATABASE_URL="mysql://bibliotheque:123@127.0.0.1:3306/bibliotheque?serverVersion
 
 Penser  à changer la variable `APP_SECRET` et les codes d'accès dans la varaible `DATABASE_URL`.
 
+**ATTENTION : `APP_SECRET` doit être une chaîne de caractère de 32 caractères en hexadécimal.**
+
 ## Migration et fixtures
 
 Pour que l'application soit utilisable, il faut créer le schéma de la base de données et charger les données.
 
+Le schéma est le suivant :
+
+[https://github.com/sebastien-76/bibliotheque/blob/main/doc/bibliotheque.png](https://github.com/sebastien-76/bibliotheque/blob/main/doc/bibliotheque.png)
+
+On utilise le script suivant :
+
 ```
 bin/dofilo.sh
 ```
-
-
-
-
-**ATTENTION : `APP_SECRET` doit être une chaîne de caractère de 32 caractères en hexadécimal.**
 
 ## Utilisation
 
