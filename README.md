@@ -1,7 +1,7 @@
 # Bibliothèque
 
 Ce repo contient une application de gestion de bibliothèque.
-Il s'agit d'un ecf back-end pour la promo 11 Pop School 09/2023
+Il s'agit d'un ecf back-end pour la promo 11 Pop School 09/2023.
 Les consignes sont disponibles ici :
 
 [https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_1.md](https://github.com/sebastien-76/bibliotheque/blob/main/doc/ECF_Back-Part_1.md)
