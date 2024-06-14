@@ -58,7 +58,7 @@
                                 </ul>
                                 {% if app.user %}
                                     <div class="mb-3">
-                                        Bonjour {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Déconnexion</a>
+                                        Bonjour {{ app.user.userIdentifier }},  <a href="{{ path('app_profile_show') }}">Mon compte </a> <a href="{{ path('app_logout') }}"> Déconnexion</a>
                                     </div>
                                 {% else %}
                                     <div class="mb-3">

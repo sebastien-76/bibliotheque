@@ -42,7 +42,7 @@ APP_SECRET=123
 DATABASE_URL="mysql://bibliotheque:123@127.0.0.1:3306/bibliotheque?serverVersion=mariadb-10.6.12&charset=utf8mb4"
 ```
 
-Penser  à changer la variable `APP_SECRET` et les codes d'accès dans la varaible `DATABASE_URL`.
+Penser  à changer la variable `APP_SECRET` et les codes d'accès dans la variable `DATABASE_URL`.
 
 **ATTENTION : `APP_SECRET` doit être une chaîne de caractère de 32 caractères en hexadécimal.**
 
@@ -57,7 +57,7 @@ Le schéma est le suivant :
 On utilise le script suivant :
 
 ```
-bin/dofilo.sh
+./bin/dofilo.sh
 ```
 
 ## Utilisation

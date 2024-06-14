@@ -3,18 +3,18 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1>Index utilisateurs</h1>
 
-    <a href="{{ path('app_admin_user_new_admin') }}">Create new admin</a>
-    <a href="{{ path('app_admin_user_new_emprunteur') }}">Create new emprunteur</a>
+    <a href="{{ path('app_admin_user_new_admin') }}">Création d'un nouvel admin</a>
+    <a href="{{ path('app_admin_user_new_emprunteur') }}">Création d'un nouvel emprunteur</a>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Email</th>
+                <th>Role</th>
                 <th>Nom</th>
-                <th>Prenom</th>
-                <th>Tel</th>
                 <th>DeletedAt</th>
                 <th>CreatedAt</th>
                 <th>UpdatedAt</th>
@@ -37,6 +37,7 @@
                         {{ user.emprunteur.nom }} {{ user.emprunteur.prenom }}
                     {% endif %}
                 </td>
+                <td>{{ user.deletedAt ? user.deletedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>
@@ -47,7 +48,7 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucunes données trouvées</td>
             </tr>
         {% endfor %}
         </tbody>

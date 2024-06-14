@@ -1,24 +1,41 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
     <div>
-        <h2>Accueil Bibliothèque</h2>
-        <h4>Livre - Auteur - Annee d'édition - Nombre de pages</h4>
+        <h2 class="text-center">Accueil Bibliothèque</h2>
+         <table class="table">
+        <thead>
+            <tr>  
+                <th class="text-center">Id</th>  
+                <th class="text-center">Titre</th>
+                <th class="text-center">Auteur</th>
+                <th class="text-center">Annee d'édition</th>
+                <th class="text-center">Nombre de pages</th>
+            </tr>
+        </thead>
         {% if livres %}
-            <ul>
-                {% for livre in livres %}
-                    <li>
+        <tbody>
+            {% for livre in livres %}
+                <tr>
+                    <td class="text-center">
                         {% if is_granted('ROLE_ADMIN') %}
-                            <a href="{{ path('app_admin_livre_show', {id: livre.id}) }}">
+                            <a href="{{ path('app_admin_livre_show', {'id': livre.id}) }}">{{livre.id}}</a>
                         {% else %}
-                            <a href="{{ path('app_livre_show', {id: livre.id}) }}">
+                            <a href="{{ path('app_livre_show', {'id': livre.id}) }}">{{livre.id}}</a>
                         {% endif %}
-                        {{livre.titre}} </a> -{{ livre.auteur.prenom }} {{ livre.auteur.nom }} - {{livre.anneeEdition}} - {{livre.nombrePages}} </li>
-                {% endfor %}
-            </ul>
+                    </td>
+                    <td class="text-center">{{livre.titre}}</td>
+                    <td class="text-center">{{livre.auteur.prenom}} {{livre.auteur.nom}}</td>
+                    <td class="text-center">{{livre.anneeEdition}}</td>
+                    <td class="text-center">{{livre.nombrePages}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
         {% endif %}
+        </table>
     </div>
 
 {% endblock %}
